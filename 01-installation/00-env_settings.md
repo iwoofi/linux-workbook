@@ -30,3 +30,8 @@ sudo modprobe pcspkr
 echo "blacklist pcspkr" | sudo tee -a /etc/modprobe.d/blacklist.conf
 ```
 
+## Изменить шрифт в консоли, размер
+
+```bash
+sudo dpkg-reconfigure console-setup
+```
