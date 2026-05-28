@@ -4,13 +4,18 @@
 
 **Удалить модуль на текущий сеанс**
 
-`sudo modprobe -r pcspkr`
-
-`sudo rmmod pcspkr`
+```bash
+sudo modprobe -r pcspkr
+```
+```bash
+sudo rmmod pcspkr
+```
 
 **Включить модуль если надо**
 
-`sudo modprobe pcspkr`
+```bash
+sudo modprobe pcspkr
+```
 
 **Запретить загрузку модуля**
 
@@ -21,5 +26,7 @@
 
 *одной командой добавить в (или создать) файл*
 
-`echo "blacklist pcspkr" | sudo tee -a /etc/modprobe.d/blacklist.conf`
+```bash
+echo "blacklist pcspkr" | sudo tee -a /etc/modprobe.d/blacklist.conf
+```
 
