@@ -26,6 +26,8 @@ sudo ufw allow ssh
 
 ```bash
 ssh-keygen -t ed25519 -C "доп. инфа"
+# или просто
+ssh-keygen
 ```
 
 можно также на следующем этапе изменить имя файла ключей
@@ -34,7 +36,11 @@ ssh-keygen -t ed25519 -C "доп. инфа"
 
 **Linux**
 ```bash
+# если ключ по умолчанию и единственный
 ssh-copy-id username@server_ip 
+
+# если ключ с определенном именем, тогда указываем какой ключ
+ssh-copy-id -i ~/.ssh/ssh_ed25519.pub user@192.168.1.10
 ```
 
 **Windows** (изменить путь до ключа на Windows, пользователь и сервер для подключения по ssh)
@@ -65,12 +71,17 @@ PubkeyAuthentication yes
 
 ```bash
 sudo sshd -t
-sudo systemctl restart ssh 
+sudo systemctl reload sshd 
 ```
 
 **далее пробуем подключиться к серверу через SSH-ключ**
 
 C указанием ключа подключаемся:
+
+**Linux**
+```bash
+ssh -i .ssh/my_ssh_key user@ip_address_serv
+```
 
 **Windows**
 ```powershell
@@ -103,7 +114,11 @@ Host mydebian
     # Имя пользователя на сервере.
     User your_username
     # ПУТЬ К ВАШЕМУ ПЕРЕИМЕНОВАННОМУ ПРИВАТНОМУ КЛЮЧУ.
+    # Linux
+    IdentityFile .ssh/my_custom_key
+    # Windows
     IdentityFile C:\Users\%USERNAME%\.ssh\my_custom_key
+    
     # Порт, если вы его меняли со стандартного (22).
     # Port 2222
 ```
